@@ -1,0 +1,55 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: gradle:6.6.1-jdk11
+    commands:
+      - gradle build
+
+  - name: discord notification
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_webhook_id
+      webhook_token:
+        from_secret: discord_webhook_token
+      username: Chat History Drone CI
+      message: >
+        {{#success build.status}}
+          Build {{build.number}} succeeded!
+          {{build.link}}
+        {{else}}
+          Build {{build.number}} failed.
+          {{build.link}}
+        {{/success}}
+
+  - name: generate changelog
+    image: naorlivne/drone-github-changelog-generator
+    settings:
+      github_user: HeyItsMeNobody
+      github_project: chathistory
+      output_path: CHANGELOG.md
+    when:
+      event: tag
+
+  - name: publish to github
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files:
+        - CHANGELOG.md
+        - build/libs/*
+    when:
+      event: tag
+
+  - name: publish to curseforge
+    image: gradle:6.6.1-jdk11
+    environment:
+      CURSEFORGE_API_KEY:
+        from_secret: curseforge_api_key
+    commands:
+      - gradle curseforge
+    when:
+      event: tag
