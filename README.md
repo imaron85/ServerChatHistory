@@ -2,4 +2,4 @@
 
 # Chat History
 
-More information can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/chathistory)
+More information can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/chat-history)
