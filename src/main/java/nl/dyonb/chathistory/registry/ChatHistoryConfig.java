@@ -15,6 +15,9 @@ public class ChatHistoryConfig implements ConfigData {
 
     public static ChatHistoryConfig CONFIG = new ChatHistoryConfig();
 
+    @Comment("Makes Chat History log the message key")
+    public boolean verboseMode = false;
+
     @Comment("Maximum amount of remembered chat messages")
     public int maxRememberedChatMessages = 25;
 
