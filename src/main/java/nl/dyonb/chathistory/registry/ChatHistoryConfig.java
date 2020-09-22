@@ -22,7 +22,7 @@ public class ChatHistoryConfig implements ConfigData {
     public int maxRememberedChatMessages = 25;
 
     @Comment("The TranslatableText keys of the chat messages to remember")
-    public String[] keysToRemember = {"death", "multiplayer", "chat.type.text", "chat.type.advancement"};
+    public String[] keysToRemember = {"death", "multiplayer", "chat.type.text", "chat.type.advancement", "chat.type.announcement"};
 
     public static void initialize() {
         AutoConfig.register(ChatHistoryConfig.class, JanksonConfigSerializer::new);
