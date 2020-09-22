@@ -27,7 +27,7 @@ public class MinecraftServerMixin {
             String key = translatableText.getKey();
 
             if (ChatHistoryConfig.CONFIG.verboseMode) {
-                ChatHistory.LOGGER.log(Level.ALL, key);
+                ChatHistory.LOGGER.log(Level.INFO, key);
             }
 
             // Check if the key is in whitelistedKeys
