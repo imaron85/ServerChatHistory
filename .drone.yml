@@ -44,6 +44,18 @@ steps:
     when:
       event: tag
 
+  - name: publish to maven
+      image: gradle:6.6.1-jdk11
+      environment:
+        MAVEN_USERNAME:
+          from_secret: maven_username
+        MAVEN_PASSWORD:
+          from_secret: maven_password
+      commands:
+        - gradle publish
+      when:
+        event: tag
+
   - name: publish to curseforge
     image: gradle:6.6.1-jdk11
     environment:
