@@ -1,17 +1,17 @@
 package nl.dyonb.chathistory.util;
 
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.UUID;
 
 public class ChatMessage {
 
-    public ChatMessage(TranslatableText translatableText, UUID uuid) {
-        this.translatableText = translatableText;
+    public ChatMessage(Text text, UUID uuid) {
+        this.text = text;
         this.uuid = uuid;
     }
 
-    public TranslatableText translatableText;
+    public Text text;
     public UUID uuid;
 
 }
