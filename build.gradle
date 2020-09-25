@@ -69,6 +69,10 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId = project.maven_group
+            artifactId = project.archives_base_name
+            version = project.mod_version
+
             // add all the jars that should be included when publishing to maven
             artifact(remapJar) {
                 builtBy remapJar
