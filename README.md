@@ -1,4 +1,4 @@
-[![Build Status](https://github.drone.dyonb.nl/api/badges/HeyItsMeNobody/chathistory/status.svg?ref=refs/heads/master)](https://github.drone.dyonb.nl/HeyItsMeNobody/chathistory)
+[![Build Status](https://github.drone.dyonb.nl/api/badges/kara-b/chathistory/status.svg?ref=refs/heads/master)](https://github.drone.dyonb.nl/kara-b/chathistory)
 
 # Chat History
 
