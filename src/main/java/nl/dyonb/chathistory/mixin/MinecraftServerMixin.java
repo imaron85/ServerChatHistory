@@ -22,8 +22,7 @@ public class MinecraftServerMixin {
 
     @Inject(at = @At("TAIL"), method = "sendSystemMessage")
     public void sendSystemMessage(Text message, UUID senderUuid, CallbackInfo ci) {
-        if (message instanceof TranslatableText) {
-            TranslatableText translatableText = (TranslatableText) message;
+        if (message instanceof TranslatableText translatableText) {
             String key = translatableText.getKey();
 
             if (ChatHistoryConfig.CONFIG.verboseMode) {
