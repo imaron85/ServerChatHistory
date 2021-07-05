@@ -3,7 +3,7 @@ name: default
 
 steps:
   - name: build
-    image: gradle:6.6.1-jdk11
+    image: gradle:7.1-jdk11
     commands:
       - gradle build
 
@@ -45,7 +45,7 @@ steps:
       event: tag
 
   - name: publish to maven
-    image: gradle:6.6.1-jdk11
+    image: gradle:7.1-jdk11
     environment:
       MAVEN_USERNAME:
         from_secret: maven_username
@@ -57,7 +57,7 @@ steps:
       event: tag
 
   - name: publish to curseforge
-    image: gradle:6.6.1-jdk11
+    image: gradle:7.1-jdk11
     environment:
       CURSEFORGE_API_KEY:
         from_secret: curseforge_api_key
