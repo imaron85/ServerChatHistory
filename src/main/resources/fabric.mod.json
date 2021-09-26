@@ -7,8 +7,29 @@
 
   "name": "Server Chat History",
   "description": "Sends the chat history to players on join.",
-  "authors": [],
-  "contact": {},
+
+  "authors": [
+    {
+      "name": "thegiggitybyte",
+      "contact": {
+        "homepage": "https://discord.gg/UPKuVWgU4G",
+        "discord": "https://discord.gg/UPKuVWgU4G"
+      }
+    },
+    {
+      "name": "namebee/dyon-b/Kara",
+      "contact": {
+        "sources": "https://github.com/namebee/chathistory"
+      }
+    }
+  ],
+
+  "contact": {
+    "homepage": "https://discord.gg/UPKuVWgU4G",
+    "discord": "https://discord.gg/UPKuVWgU4G",
+    "sources": "https://github.com/Giggitybyte/ServerChatHistory",
+    "issues": "https://github.com/Giggitybyte/ServerChatHistory/issues"
+  },
 
   "license": "MPL 2.0",
   "icon": "assets/chathistory/icon.png",
