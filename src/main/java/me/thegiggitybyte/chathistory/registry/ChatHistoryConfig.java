@@ -1,4 +1,4 @@
-package nl.dyonb.chathistory.registry;
+package me.thegiggitybyte.chathistory.registry;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import nl.dyonb.chathistory.ChatHistory;
+import me.thegiggitybyte.chathistory.ChatHistory;
 
 @Environment(EnvType.SERVER)
 @Config(name = ChatHistory.MOD_ID)

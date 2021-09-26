@@ -1,4 +1,4 @@
-package nl.dyonb.chathistory.util;
+package me.thegiggitybyte.chathistory.util;
 
 import net.minecraft.text.Text;
 

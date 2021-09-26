@@ -1,13 +1,13 @@
-package nl.dyonb.chathistory.mixin;
+package me.thegiggitybyte.chathistory.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import nl.dyonb.chathistory.ChatHistory;
-import nl.dyonb.chathistory.registry.ChatHistoryConfig;
-import nl.dyonb.chathistory.util.ChatMessage;
+import me.thegiggitybyte.chathistory.ChatHistory;
+import me.thegiggitybyte.chathistory.registry.ChatHistoryConfig;
+import me.thegiggitybyte.chathistory.util.ChatMessage;
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

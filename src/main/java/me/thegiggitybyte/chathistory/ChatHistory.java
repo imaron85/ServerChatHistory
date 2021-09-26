@@ -1,12 +1,12 @@
-package nl.dyonb.chathistory;
+package me.thegiggitybyte.chathistory;
 
 import com.google.common.collect.EvictingQueue;
+import me.thegiggitybyte.chathistory.registry.ChatHistoryConfig;
+import me.thegiggitybyte.chathistory.util.ChatMessage;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.util.Identifier;
-import nl.dyonb.chathistory.registry.ChatHistoryConfig;
-import nl.dyonb.chathistory.util.ChatMessage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
