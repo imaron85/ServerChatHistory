@@ -1,14 +1,11 @@
 package me.thegiggitybyte.chathistory.mixin;
 
+import me.thegiggitybyte.chathistory.ChatHistory;
+import me.thegiggitybyte.chathistory.ChatMessage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import me.thegiggitybyte.chathistory.ChatHistory;
-import me.thegiggitybyte.chathistory.registry.ChatHistoryConfig;
-import me.thegiggitybyte.chathistory.util.ChatMessage;
-import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,25 +16,8 @@ import java.util.UUID;
 @Environment(EnvType.SERVER)
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
-
     @Inject(at = @At("TAIL"), method = "sendSystemMessage")
-    public void sendSystemMessage(Text message, UUID senderUuid, CallbackInfo ci) {
-        if (message instanceof TranslatableText translatableText) {
-            String key = translatableText.getKey();
-
-            if (ChatHistoryConfig.CONFIG.verboseMode) {
-                ChatHistory.LOGGER.log(Level.INFO, key);
-            }
-
-            // Check if the key is in whitelistedKeys
-            for (String whitelistedKey : ChatHistoryConfig.CONFIG.keysToRemember) {
-                if (key.startsWith(whitelistedKey)) {
-                    ChatMessage chatMessage = new ChatMessage(translatableText, senderUuid);
-                    ChatHistory.CHAT_HISTORY.add(chatMessage);
-                }
-            }
-
-        }
+    public void cacheMessage(Text message, UUID senderUuid, CallbackInfo ci) {
+        ChatHistory.MESSAGE_CACHE.add(new ChatMessage(message, senderUuid));
     }
-
 }
