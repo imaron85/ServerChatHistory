@@ -3,11 +3,11 @@
   "minVersion": "0.8",
   "package": "me.thegiggitybyte.chathistory.mixin",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [
-  ],
   "server": [
     "PlayerManagerMixin",
-    "MinecraftServerMixin"
+    "ServerPlayerEntityMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "PlayerAdvancementTrackerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
