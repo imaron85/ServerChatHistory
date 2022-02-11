@@ -37,7 +37,7 @@ public class PlayerManagerMixin {
     )
     public void sendCachedMessages(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
         for (var message : ChatHistory.MESSAGE_CACHE) {
-            player.sendMessage(message.getContent(), MessageType.CHAT, message.getSender());
+            player.sendMessage(message.getContent(), message.getType(), message.getSender());
         }
     }
 }
