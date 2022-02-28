@@ -28,13 +28,7 @@ public class PlayerManagerMixin {
         ChatHistory.MESSAGE_CACHE.add(new ChatMessage(content, type, sender));
     }
     
-    @Inject(
-            method = "onPlayerConnect",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/network/ServerPlayerEntity;onSpawn()V"
-            )
-    )
+    @Inject(method = "onPlayerConnect", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;onSpawn()V"))
     public void sendCachedMessages(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
         for (var message : ChatHistory.MESSAGE_CACHE) {
             player.sendMessage(message.getContent(), message.getType(), message.getSender());
