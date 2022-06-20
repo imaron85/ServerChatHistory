@@ -1,6 +1,8 @@
 package me.thegiggitybyte.chathistory;
 
 import com.google.common.collect.EvictingQueue;
+import me.thegiggitybyte.chathistory.message.Message;
+import me.thegiggitybyte.chathistory.message.PlayerMessage;
 import net.darktree.simpleconfig.SimpleConfig;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.EnvType;
@@ -10,7 +12,7 @@ import java.util.Queue;
 
 @Environment(EnvType.SERVER)
 public class ChatHistory implements DedicatedServerModInitializer {
-    public static Queue<ChatMessage> MESSAGE_CACHE;
+    public static Queue<Message> MESSAGE_CACHE;
     
     @Override
     public void onInitializeServer() {
