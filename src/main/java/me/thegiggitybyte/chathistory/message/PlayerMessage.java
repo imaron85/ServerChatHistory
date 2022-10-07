@@ -1,26 +1,36 @@
 package me.thegiggitybyte.chathistory.message;
 
-import net.minecraft.network.message.MessageSender;
+
 import net.minecraft.network.message.MessageType;
 import net.minecraft.network.message.SignedMessage;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.server.network.ServerPlayerEntity;
 
-public class PlayerMessage extends Message {
-    private final SignedMessage message;
-    private final MessageSender sender;
+import java.util.function.Predicate;
+
+
+public class PlayerMessage implements Message {
+    private final Predicate<ServerPlayerEntity> shouldSendFiltered;
     
-    public PlayerMessage(SignedMessage message, MessageSender sender, RegistryKey<MessageType> typeKey) {
-        super(typeKey);
+    private final SignedMessage message;
+    
+    private final MessageType.Parameters params;
+    
+    public PlayerMessage(SignedMessage message, Predicate<ServerPlayerEntity> shouldSendFiltered, MessageType.Parameters params) {
         
         this.message = message;
-        this.sender = sender;
+        this.shouldSendFiltered = shouldSendFiltered;
+        this.params = params;
     }
     
-    public SignedMessage getSignedMessage() {
+    public SignedMessage getMessage() {
         return message;
     }
     
-    public MessageSender getSender() {
-        return sender;
+    public MessageType.Parameters getParams() {
+        return params;
+    }
+    
+    public Predicate<ServerPlayerEntity> getShouldSendFiltered() {
+        return shouldSendFiltered;
     }
 }
