@@ -1,19 +1,25 @@
 package me.thegiggitybyte.chathistory.message;
 
-import net.minecraft.network.message.MessageType;
-import net.minecraft.text.Text;
-import net.minecraft.util.registry.RegistryKey;
 
-public class GameMessage extends Message {
+import net.minecraft.text.Text;
+
+
+public class GameMessage implements Message {
+    private final boolean overlay;
+    
     private final Text message;
     
-    public GameMessage(Text message, RegistryKey<MessageType> typeKey) {
-        super(typeKey);
+    public GameMessage(Text message, boolean overlay) {
+        this.overlay = overlay;
         
         this.message = message;
     }
     
-    public Text getTextMessage() {
+    public Text getMessage() {
         return message;
+    }
+    
+    public boolean isOverlay() {
+        return overlay;
     }
 }
