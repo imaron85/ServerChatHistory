@@ -5,7 +5,6 @@ import me.thegiggitybyte.chathistory.ChatHistory;
 import me.thegiggitybyte.chathistory.message.GameMessage;
 import me.thegiggitybyte.chathistory.message.PlayerMessage;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.network.message.MessageSourceProfile;
 import net.minecraft.network.message.MessageType;
 import net.minecraft.network.message.SentMessage;
 import net.minecraft.network.message.SignedMessage;
@@ -31,22 +30,17 @@ public class PlayerManagerMixin {
         ChatHistory.MESSAGE_CACHE.add(new GameMessage(message, overlay));
     }
     
-    @Inject(method = "broadcast(Lnet/minecraft/network/message/SignedMessage;Ljava/util/function/Predicate;" +
-                     "Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/network/message/MessageSourceProfile;" +
-                     "Lnet/minecraft/network/message/MessageType$Parameters;)V",
+    @Inject(method = "broadcast(Lnet/minecraft/network/message/SignedMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/network/message/MessageType$Parameters;)V",
             at = @At("HEAD"))
-    public void cachePlayerMessage(SignedMessage message, Predicate<ServerPlayerEntity> shouldSendFiltered,
-                                   @Nullable ServerPlayerEntity sender, MessageSourceProfile sourceProfile, MessageType.Parameters params,
-                                   CallbackInfo ci) {
+    public void cachePlayerMessage(SignedMessage message, Predicate<ServerPlayerEntity> shouldSendFiltered, @Nullable ServerPlayerEntity sender, MessageType.Parameters params, CallbackInfo ci) {
         ChatHistory.MESSAGE_CACHE.add(new PlayerMessage(message, shouldSendFiltered, params));
     }
     
-    @Inject(method = "onPlayerConnect", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;onSpawn()V"))
+    @Inject(method = "onPlayerConnect", at = @At(value = "TAIL", target = "Lnet/minecraft/server/network/ServerPlayerEntity;onSpawn()V"))
     public void sendCachedMessages(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
         for (var message : ChatHistory.MESSAGE_CACHE) {
             if (message instanceof PlayerMessage playerMessage) {
-                player.sendChatMessage(SentMessage.of(playerMessage.getMessage()), playerMessage.getShouldSendFiltered().test(player),
-                                       playerMessage.getParams());
+                player.sendChatMessage(SentMessage.of(playerMessage.getMessage()), playerMessage.getShouldSendFiltered().test(player), playerMessage.getParams());
             } else if (message instanceof GameMessage gameMessage) {
                 player.sendMessage(gameMessage.getMessage(), gameMessage.isOverlay());
             }
